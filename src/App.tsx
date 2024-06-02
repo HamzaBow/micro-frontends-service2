@@ -1,41 +1,26 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import SubPage1 from "./SubPage1";
+import SubPage2 from "./SubPage2";
+import MainPage from "./MainPage";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <div className="p-5 border-2 border-rose-500">
-          <h3>Local Button</h3>
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
+    <div className="flex h-full items-stretch">
+      <Router basename="/service2">
+        <div className="w-72 h-full bg-green-500 bg-opacity-50">
+          <h6>side bar</h6>
+          <div className="flex flex-col mt-3">
+            <Link to={"/"}>go to Main Page</Link>
+            <Link to={"/subpage1"}>go to SubPage 1</Link>
+            <Link to={"/subpage2"}>go to SubPage 1</Link>
+          </div>
         </div>
-        <div className="p-5 border-2 border-rose-500">
-          <h3>remote Button</h3>
-        </div>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <Routes>
+          <Route path="subpage1" element={<SubPage1 />} />
+          <Route path="subpage2" element={<SubPage2 />} />
+          <Route path="/" element={<MainPage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
-
-export default App;
